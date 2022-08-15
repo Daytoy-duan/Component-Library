@@ -2,7 +2,6 @@ import { App } from "vue";
 import DayButton from "./button/DayButton";
 import SFCButton from "./button/SFCButton.vue"
 import JSXButton from "./button/JSXButton";
-
 // 组件库具备的单独导出
 export { DayButton, SFCButton, JSXButton};
 
