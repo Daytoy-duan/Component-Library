@@ -1,8 +1,17 @@
-import { defineComponent,PropType,toRefs} from "vue";
-import "uno.css"
+import { defineComponent, PropType } from "vue";
+import "uno.css";
 
 export type DSize = "small" | "medium" | "large";
-export type DColor = 'black' | 'gray' | 'red' | 'yellow' | 'green'|'blue'|'indigo'|'purple'|'pink'
+export type DColor =
+  | "black"
+  | "gray"
+  | "red"
+  | "yellow"
+  | "green"
+  | "blue"
+  | "indigo"
+  | "purple"
+  | "pink";
 
 export const props = {
   // 新增
@@ -35,7 +44,9 @@ export const props = {
 export default defineComponent({
   name: "DButton",
   props,
-  setup(props,{slots}){
+  setup(props, { slots }) {
+    console.log(`html`, document.querySelector(`#app`)?.innerHTML);
+
     const size = {
       small: {
         x: "2",
@@ -48,12 +59,13 @@ export default defineComponent({
         text: "base",
       },
       large: {
-        x: "400",
-        y: "200",
+        x: "4",
+        y: "2",
         text: "lg",
       },
     };
-    return ()=> (
+
+    return () => (
       <button
         class={`
           py-${size[props.size].y}
@@ -64,7 +76,7 @@ export default defineComponent({
           border-${props.color}-${props.plain ? "500" : "500"}
           cursor-pointer
           border-solid
-          text-${props.plain ? props.color + "-500" : "white-500"}
+          text-${props.plain ? props.color + "-500" : "white"}
           text-${size[props.size].text}
           hover:text-white
           transition duration-300 ease-in-out transform hover:scale-105
@@ -78,6 +90,6 @@ export default defineComponent({
         )}
         {slots.default ? slots.default() : ""}
       </button>
-    )
-  }
+    );
+  },
 });

@@ -1,14 +1,15 @@
 import { defineConfig } from "vite";
 import vue from "@vitejs/plugin-vue";
-import vueJsx from "@vitejs/plugin-vue-jsx"
+import vueJsx from '@vitejs/plugin-vue-jsx'
 import { presetUno, presetAttributify, presetIcons } from "unocss";
-import Unocss from "unocss/vite";
+// import Unocss from "unocss/vite";
+import Unocss from "./config/unocss";
+
+// https://vitejs.dev/config/
 
 const rollupOptions = {
-  external: [
-    "vue",
-    "vue-router"
-  ],
+
+  external: ["vue", "vue-router"],
   output: {
     globals: {
       vue: "Vue",
@@ -17,10 +18,17 @@ const rollupOptions = {
 };
 
 export default defineConfig({
+
   plugins: [
-    vue(),
-    vueJsx(),
-    Unocss()
+    vue(),    // 添加JSX插件
+    vueJsx({
+      // options are passed on to @vue/babel-plugin-jsx
+    }),
+    // 添加UnoCSS插件
+    // Unocss({
+    //   presets: [presetUno(), presetAttributify(), presetIcons()],
+    // })
+    Unocss(),
   ],
   build: {
     rollupOptions,
@@ -29,8 +37,8 @@ export default defineConfig({
       entry: "./src/entry.ts", // 入口文件
       name: "DayUI",
       fileName: "Day-ui",
-      // 导出的模块格式
-      formats: ["esm", "umd", "iife"]
-    }
-  }
+      // 导出模块格式
+      formats: ["esm", "umd", "iife"],
+    },
+  },
 });
