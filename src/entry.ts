@@ -2,7 +2,7 @@ import { App } from "vue";
 import DayButton from "./button/DayButton";
 import SFCButton from "./button/SFCButton.vue"
 import JSXButton from "./button/JSXButton";
-import DButton from "./button/index";
+import DButton from "./button/Button";
 //import "uno.css";
 // 组件库具备的单独导出
 export { DayButton, SFCButton, JSXButton, DButton};
